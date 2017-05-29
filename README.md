@@ -32,9 +32,9 @@ Most artboards should only contain one layer with a compound path. However, mult
 
 You can run the local example by pulling the repo and running `yarn` and then `yarn dev`. Please make sure you have [Yarn](https://yarnpkg.com/en/docs/getting-started) prior to installing. If for some reason this loader does not work please file an issue and I will get to it as soon as possible 😇
 
-### Webpack 2 Configuration
+### Webpack Configuration
 
-**webpack.config.js**
+**webpack 2**
 ```js
 module.exports = {
   module: {
@@ -42,6 +42,20 @@ module.exports = {
       {
         test: /\.sketch$/,
         use: 'sketch-to-svg-json-loader'
+      }
+    ]
+  }
+}
+```
+
+**webpack 1**
+```js
+module.exports = {
+  module: {
+    loaders: [
+      {
+        test: /\.sketch$/,
+        loader: 'sketch-to-svg-json-loader'
       }
     ]
   }
