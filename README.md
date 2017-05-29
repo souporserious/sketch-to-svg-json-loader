@@ -62,7 +62,7 @@ module.exports = {
 }
 ```
 
-**React Example**
+## Example React Component
 ```js
 import icons from 'icons.sketch'
 
