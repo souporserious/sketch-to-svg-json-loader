@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/sketch-to-svg-json-loader.svg)](https://badge.fury.io/js/sketch-to-svg-json-loader)
 [![Dependency Status](https://david-dm.org/souporserious/sketch-to-svg-json-loader.svg)](https://david-dm.org/souporserious/sketch-to-svg-json-loader)
 
-Import Sketch files as SVG JSON data through Webpack.
+Import Sketch files as SVG JSON data through Webpack. Inspired by [@david.gilbertson](https://medium.com/@david.gilbertson)'s wonderful article on [icons as react components](https://medium.com/@david.gilbertson/icons-as-react-components-de3e33cb8792).
 
 ## Install
 
