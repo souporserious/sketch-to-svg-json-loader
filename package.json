@@ -1,7 +1,6 @@
 {
   "name": "sketch-to-svg-json-loader",
-  "version": "0.1.0",
-  "main": "lib/index.js",
+  "version": "0.2.0",
   "author": "Travis Arnold",
   "description": "Sketch to SVG JSON loader module for webpack",
   "license": "MIT",
@@ -10,9 +9,7 @@
     "url": "https://github.com/souporserious/sketch-to-svg-json-loader.git"
   },
   "scripts": {
-    "dev": "npm run build && webpack-dev-server --hot --progress --host 0.0.0.0",
-    "build": "babel index.js --out-dir lib",
-    "prepublish": "npm run build"
+    "dev": "webpack-dev-server --hot --progress --host 0.0.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

@@ -1,17 +1,17 @@
-const { readdirSync, readFileSync } = require('fs')
-const { resolve } = require('path')
-const { getOptions } = require('loader-utils')
-const SketchTool = require('sketch-tool')
-const svgson = require('svgson')
-const del = require('del')
+var fs = require('fs')
+var path = require('path')
+var loaderUtils = require('loader-utils')
+var del = require('del')
+var SketchTool = require('sketch-tool')
+var svgson = require('svgson')
 
-function SketchToSVGJSON(content) {
+module.exports = function(content) {
   this.cacheable && this.cacheable(true)
 
-  const callback = this.async()
-  const query = getOptions(this) || {}
-  const svgsDir = resolve(__dirname, '../.svgs')
-  const Sketch = new SketchTool({
+  var callback = this.async()
+  var query = loaderUtils.getOptions(this) || {}
+  var svgsDir = path.resolve(__dirname, '../.svgs')
+  var Sketch = new SketchTool({
     file: this.resourcePath,
   })
 
@@ -21,24 +21,25 @@ function SketchToSVGJSON(content) {
   Sketch.exportCall('artboards', {
     formats: 'svg',
     output: svgsDir,
-  }).then(() => {
-    const files = readdirSync(svgsDir)
-    const jsonData = {}
+  }).then(function() {
+    var files = fs.readdirSync(svgsDir)
+    var jsonData = {}
 
     function writeJsonData() {
-      const module = `export default ${JSON.stringify(jsonData)}`
+      var module = `module.exports = ${JSON.stringify(jsonData)}`
       callback(null, module)
       del(svgsDir)
     }
 
-    files.forEach((file, index) => {
-      const contents = readFileSync(`${svgsDir}/${file}`)
-      svgson(contents, { svgo: true, pretty: true }, svg => {
-        const node = svg.childs[1]
-        const key = file.replace('.svg', '')
+    files.forEach(function(file, index) {
+      var contents = fs.readFileSync(`${svgsDir}/${file}`)
+
+      svgson(contents, { svgo: true, pretty: true }, function(svg) {
+        var node = svg.childs[1]
+        var key = file.replace('.svg', '')
 
         if (node.name === 'g') {
-          node.childs.forEach((childNode, index) => {
+          node.childs.forEach(function(childNode, index) {
             jsonData[`${key}-${index}`] = childNode.attrs.d
           })
         } else {
@@ -52,5 +53,3 @@ function SketchToSVGJSON(content) {
     })
   })
 }
-
-export default SketchToSVGJSON

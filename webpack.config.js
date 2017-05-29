@@ -28,7 +28,7 @@ const config = {
       },
       {
         test: /\.(sketch)/,
-        use: [{ loader: './lib/index' }],
+        use: [{ loader: './index' }],
       },
     ],
   },

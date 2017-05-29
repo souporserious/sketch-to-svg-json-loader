@@ -5,37 +5,32 @@
 
 Import Sketch files as SVG JSON data through Webpack.
 
-Exports each Sketch artboard as a path.
-
-```js
-{
-  search: 'M15.5 14h-.79l-.28-.27A6.471 6.471...'
-}
-```
-
-Most artboard's should only contain one layer with a compound path. Multiple paths are supported and will result in an indexed key.
-
-```js
-{
-  '${artboardName}-{layerIndex}': 'M15.5 14h-.79l-.28-.27A6.471 6.471...'
-}
-```
-
-You can run the local example by pulling the repo and running `yarn` and then `yarn dev`. Please make sure you have [Yarn](https://yarnpkg.com/en/docs/getting-started) prior to installing.
-
-## Todo
-
-- add ability to pass options
-
-- write tests
-
-- better docs
-
 ## Install
 
 `yarn add sketch-to-svg-json-loader --dev`
 
 `npm install sketch-to-svg-json-loader --save-dev`
+
+## Usage
+
+Exports each Sketch artboard as a path.
+
+```js
+{
+  'search': 'M15.5 14h-.79l-.28-.27A6.471 6.471...'
+}
+```
+
+Most artboards should only contain one layer with a compound path. However, multiple paths are supported and will result in an indexed key like the following:
+
+```js
+{
+  'search-0': 'M3 5h2V3c-1.1...',
+  'search-1': 'M9 9h6v6H9z...'
+}
+```
+
+You can run the local example by pulling the repo and running `yarn` and then `yarn dev`. Please make sure you have [Yarn](https://yarnpkg.com/en/docs/getting-started) prior to installing. If for some reason this loader does not work please file an issue and I will get to it as soon as possible 😇
 
 ### Webpack 2 Configuration
 
@@ -65,3 +60,13 @@ function SearchIcon() {
   )
 }
 ```
+
+## Todo
+
+- add ability to pass options
+
+- better way to handle illustrations and more complex icons
+
+- write tests
+
+- better docs
