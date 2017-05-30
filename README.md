@@ -74,13 +74,3 @@ function SearchIcon() {
   )
 }
 ```
-
-## Todo
-
-- add ability to pass options
-
-- better way to handle illustrations and more complex icons
-
-- write tests
-
-- better docs
